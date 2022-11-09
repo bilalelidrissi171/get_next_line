@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:21:26 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/09 15:49:53 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:42:07 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 #  define BUFFER_SIZE 5
 # endif
 
-#include <unistd.h>
-#include <stdlib.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 char *get_next_line(int fd);
 
