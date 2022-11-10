@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:21:22 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/10 17:46:18 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:40:29 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,29 @@
 char *get_next_line(int fd)
 {
 	char		*buff;
-	static char	*for_return;
+	char		*for_return;
+	static char	*temp;
+
 	ssize_t		nb;
 
-	for_return = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-
 	nb = 0;
+
 	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	nb = read(fd, buff, BUFFER_SIZE); // '\0' is add auto or need to adding it
+	nb = read(fd, buff, BUFFER_SIZE);
 	buff[BUFFER_SIZE] = '\0';
+
 	if (nb == -1)
 		return (free(buff), NULL);
 
-	for_return = join_it(for_return, buff);
-
+	while (1)
+	{
+		for_return = temp;
+		temp = join_it(for_return, buff);
+		for_return = temp;
+		if (found_newline(for_return) == 1 || nb == 0)
+			return (for_return);
+	}
+	
 	return (for_return);
 }
 
