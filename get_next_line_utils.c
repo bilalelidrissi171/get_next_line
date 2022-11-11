@@ -6,13 +6,13 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:23:00 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/11 22:47:11 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/12 00:33:31 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char *s)
 {
 	size_t	x;
 
@@ -22,16 +22,14 @@ size_t	ft_strlen(const char *s)
 	return (x);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strchr(char *s)
 {
 	while (*s)
 	{
-		if ((char)*s == (char)c)
-			return ((char *)s);
+		if ((char)*s == '\n')
+			return ((char *)s + 1);
 		s++;
 	}
-	if ((char)*s == (char)c)
-		return ((char *)s);
 	return (NULL);
 }
 

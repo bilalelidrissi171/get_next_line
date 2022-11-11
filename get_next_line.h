@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:21:26 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/11 23:04:41 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/12 00:21:23 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 50
+#  define BUFFER_SIZE 1
 # endif
 
 # include <sys/types.h>
@@ -25,10 +25,11 @@
 char	*get_next_line(int fd);
 char	*read_newline(int fd, char *my_backup);
 char	*extract_newline(char *for_return, char **my_backup);
-char	*ft_strchr(char *s, int c);
 int		is_newline(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s1);
+char	*ft_strchr(char *s);
+size_t	ft_strlen(char *s);
 
 
 
