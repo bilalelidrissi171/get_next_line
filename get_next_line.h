@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:21:26 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/13 04:44:11 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/13 05:29:59 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 5000
 # endif
 
 # include <sys/types.h>
