@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 00:10:55 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/13 05:46:35 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/13 05:59:31 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*read_newline(int fd, char **my_backup)
 			return (free(buff), free(*my_backup), NULL);
 		buff[nb] = '\0';
 		if (nb == 0 && *my_backup[0] == '\0')
-			return(free(buff),free(*my_backup), NULL);
+			return(free(buff), NULL);
 		if (nb == 0)
 			return(free(buff),*my_backup);
 		*my_backup = ft_strjoin(*my_backup,buff);
@@ -43,19 +43,16 @@ char	*read_newline(int fd, char **my_backup)
 char	*extract_newline(char *for_return, char **my_backup)
 {
 	char	*line;
-
 	if (is_newline(for_return))
 	{
-		char	*line;
 		size_t	i;
 
 		i = 0;
 		while (for_return[i] != '\n')
 			i++;
-		line = (char *)malloc((++i) * sizeof(char));
+		line = (char *)malloc((i + 1) * sizeof(char));
 		if (!line)
 			return(free(*my_backup), NULL);
-
 		*my_backup = ft_strchr(for_return);
 		i = 0;
 		while (for_return[i] != '\n')
@@ -66,7 +63,7 @@ char	*extract_newline(char *for_return, char **my_backup)
 		line[i] = '\0';
 	}
 	else
-		return (free(*my_backup),free(line), NULL);
+		return (NULL);
 
 	//printf("|%s|",line);
 
@@ -90,13 +87,49 @@ char	*get_next_line(int fd)
 
 int main()
 {
-	int i = 0;
 	int fd = open("a",O_RDONLY);
 
 	char *s ;
 	s = get_next_line(fd);
 	printf("%s\n",s);
 	//free(s);
+
+	s = get_next_line(fd);
+	printf("%s\n",s);
+	//free(s);
+
+	s = get_next_line(fd);
+	printf("%s\n",s);
+	//free(s);
+
+	s = get_next_line(fd);
+	printf("%s\n",s);
+	//free(s);
+
+	s = get_next_line(fd);
+	printf("%s\n",s);
+	//free(s);
+
+	s = get_next_line(fd);
+	printf("%s\n",s);
+	//free(s);
+
+	s = get_next_line(fd);
+	printf("%s\n",s);
+	//free(s);
+
+	s = get_next_line(fd);
+	printf("%s\n",s);
+	//free(s);
+
+	s = get_next_line(fd);
+	printf("%s\n",s);
+	//free(s);
+
+	s = get_next_line(fd);
+	printf("%s\n",s);
+	//free(s);
+
 
 	//while (1);
 
