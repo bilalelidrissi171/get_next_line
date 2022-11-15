@@ -6,136 +6,150 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 00:10:55 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/13 06:05:00 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/15 23:19:00 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*read_newline(int fd, char **my_backup)
+char	*read_newline(int fd, char *my_backup)
 {
+	ssize_t	nb;
 	char	*buff;
-	int		nb;
+	char	*line;
 
-	if (!*my_backup)
-		*my_backup = ft_strdup("");
-	nb = 0;
-	while (is_newline(*my_backup) == 0)
-	{
-		buff = (char *)malloc ((BUFFER_SIZE + 1) * sizeof(char));
-		if (!buff)
-			return (free(*my_backup), NULL);
-		nb = read(fd, buff, BUFFER_SIZE);
-		if (nb == -1)
-			return (free(buff), free(*my_backup), NULL);
-		buff[nb] = '\0';
-		if (nb == 0 && *my_backup[0] == '\0')
-			return(free(buff), NULL);
-		if (nb == 0)
-			return(free(buff),*my_backup);
-		*my_backup = ft_strjoin(*my_backup,buff);
-	}
-	if (nb == 0)
+	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buff)
 		return (NULL);
-	return (free(buff),*my_backup);
+
+
+	while(is_newline(my_backup) == 0)
+	{
+
+		nb = read(fd, buff, BUFFER_SIZE);
+
+
+		if (nb == -1 || (nb == 0 && my_backup == NULL))
+			return (free(buff), free(my_backup), NULL);
+
+		buff[nb] = '\0';
+
+		if (nb == 0)
+			return (free(buff), my_backup);
+
+
+		if (my_backup == NULL)
+			my_backup = ft_strdup("");
+
+		line = my_backup;
+		my_backup = ft_strjoin(line, buff);
+		free(line);
+	}
+	return (free(buff), my_backup);
 }
 
-char	*extract_newline(char *for_return, char **my_backup)
+char	*extract_newline(char **my_backup)
 {
 	char	*line;
-	if (is_newline(for_return))
+	size_t	i;
+
+	i = 0;
+	if (is_newline(*my_backup) == 1)
+		return *my_backup;
+	// else
+	// 	return *my_backup;
+
+
+	while ((*my_backup)[i] != '\n' && (*my_backup)[i] )
+		i++;
+
+	line = (char *)malloc((i + 2) * sizeof(char)); // +1 f \0 w +2 f \n you have to write another condition
+
+	i = 0;
+
+	while ((*my_backup)[i] != '\n' && (*my_backup)[i] )
 	{
-		size_t	i;
-
-		i = 0;
-		while (for_return[i] != '\n')
-			i++;
-
-		line = (char *)malloc((i + 1) * sizeof(char));
-		if (!line)
-			return(free(*my_backup), NULL);
-		if (for_return[i + 1] == '\0')
-		{
-			return (NULL);
-		}
-		*my_backup = ft_strchr(for_return);
-		i = 0;
-		while (for_return[i] != '\n')
-		{
-			line[i] = for_return[i];
-			i++;
-		}
-		line[i] = '\0';
+		line[i] = (*my_backup)[i];
+		i++;
 	}
-	else
-		return (NULL);
+	if ((*my_backup)[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
 
-	//printf("|%s|",line);
+	*my_backup = ft_strchr(*my_backup);
+	// if ((*my_backup)[0] == '\0')
+	// 	*my_backup = NULL;
+
 
 	return (line);
+
+
 }
+
 
 char	*get_next_line(int fd)
 {
-	char		*for_return;
 	static char	*my_backup;
+	char		*for_return;
 
-	for_return = read_newline(fd, &my_backup);
-	for_return = extract_newline(for_return, &my_backup);
-	//printf("|%s|",my_backup);
+	// protection Buffer size and fd
+	if (fd < 0  || BUFFER_SIZE <=0)
+		return (NULL);
+
+	my_backup = read_newline(fd, my_backup);
+
+	// if (my_backup[0]== '\0')
+	// 	return (NULL);
+
+
+
+	for_return = extract_newline(&my_backup);
+
+
+
 	return (for_return);
 }
 
+
+
+
+
 #include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 
 int main()
 {
-	int fd = open("a",O_RDONLY);
 
-	char *s ;
-	s = get_next_line(fd);
-	printf("%s\n",s);
-	//free(s);
+		int fd;
+	fd= open("a", O_RDONLY);
+	char *s=get_next_line(fd);
 
-	s = get_next_line(fd);
-	printf("%s\n",s);
-	//free(s);
+		printf("%s",s);
+		free(s);
 
-	s = get_next_line(fd);
-	printf("%s\n",s);
-	//free(s);
+		s=get_next_line(fd);
+		printf("%s",s);
+		free(s);
 
-	s = get_next_line(fd);
-	printf("%s\n",s);
-	//free(s);
+		s=get_next_line(fd);
+		printf("%s",s);
+		free(s);
 
-	s = get_next_line(fd);
-	printf("%s\n",s);
-	//free(s);
-
-	s = get_next_line(fd);
-	printf("%s\n",s);
-	//free(s);
-
-	s = get_next_line(fd);
-	printf("%s\n",s);
-	//free(s);
-
-	s = get_next_line(fd);
-	printf("%s\n",s);
-	//free(s);
-
-	s = get_next_line(fd);
-	printf("%s\n",s);
-	//free(s);
-
-	s = get_next_line(fd);
-	printf("%s\n",s);
-	//free(s);
-
+				s=get_next_line(fd);
+		printf("%s",s);
+		free(s);
+	// while (s)
+	// {
+	// 	printf("%s",s);
+	// 	free(s);
+	// 	s = get_next_line(fd);
+	// }
+	// 	printf("%s",s);
 
 	//while (1);
+	//system("leaks a.out");
+
 
 }

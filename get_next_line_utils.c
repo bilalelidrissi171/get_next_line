@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 00:11:12 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/13 05:59:13 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/15 22:28:24 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,20 @@ size_t	ft_strlen(char *s)
 char	*ft_strchr(char *s)
 {
 	size_t	i;
+	char *str;
 
 	i = 0;
-	//
 	while (s[i])
 	{
 		if (s[i] == '\n')
 		{
-			char *str = (char *)malloc((ft_strlen(s) - i + 1) * sizeof(char));
+			str = (char *)malloc((ft_strlen(s) - i) * sizeof(char)); //bilal\nhjkka\0
 			str = &s[i + 1];
-			return (free(s), str);
+			return (str);
 		}
 		i++;
 	}
-	return (free(s) ,NULL);
+	return (s);
 }
 
 int	is_newline(char *s)
@@ -60,31 +60,24 @@ int	is_newline(char *s)
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
-	size_t	ls1;
-	size_t	ls2;
 	size_t	i;
 	size_t	j;
 
-	ls1 = ft_strlen(s1);
-	ls2 = ft_strlen(s2);
 
-	if (!s1)
-		return (s2);
-	str = (char *)malloc((ls1 + ls2 + 1) * sizeof(char));
+
+	if (!s1 || !s2) // delete
+		return (NULL);
+	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char)); // change ft_strlen b ls1 and ls2
 	if (!str)
 		return (NULL);
-	i = 0;
-	j = 0;
-	while (i < ls1)
-	{
+	i = -1;
+	j = -1;
+	while (++i < ft_strlen(s1))
 		str[i] = s1[i];
-		i++;
-	}
-	while (j < ls2)
+	while (++j < ft_strlen(s2))
 	{
 		str[i] = s2[j];
 		i++;
-		j++;
 	}
 	str[i] = '\0';
 	return (str);
