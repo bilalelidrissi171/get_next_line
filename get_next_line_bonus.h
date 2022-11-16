@@ -6,15 +6,14 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:21:26 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/16 22:30:15 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/16 23:07:16 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-# include <sys/types.h>
-# include <sys/uio.h>
+# include <limits.h>
 # include <unistd.h>
 # include <stdlib.h>
 

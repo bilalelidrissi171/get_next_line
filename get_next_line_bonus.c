@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 00:10:55 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/16 22:54:09 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/16 23:07:47 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ char	*extract_after_newline(char *my_backup)
 
 char	*get_next_line(int fd)
 {
-	static char	**my_backup;
+	static char	*my_backup[OPEN_MAX];
 	char		*for_return;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= OPEN_MAX)
 		return (NULL);
 	my_backup[fd] = read_newline(fd, my_backup[fd]);
 	if (!my_backup[fd])
@@ -105,17 +105,3 @@ char	*get_next_line(int fd)
 }
 
 
-#include <fcntl.h>
-
-int main()
-{
-	int fd;
-	int fd1;
-	int fd2;
-	char *s;
-
-	fd = open("a",O_RDONLY);
-	fd1 = open("b",O_RDONLY);
-	fd2 = open("c",O_RDONLY);
-	s = get_next_line(fd);
-}
