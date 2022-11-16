@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 00:10:55 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/16 05:07:16 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/16 05:12:22 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	*extract_newline(char **my_backup)
 		if (**my_backup == '\0')
 			return (NULL);
 		len = *my_backup;
-		//free(my_backup);
 		*my_backup = NULL;
 		return (len);
 	}
