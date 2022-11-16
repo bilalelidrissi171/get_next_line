@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 00:10:55 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/16 04:20:29 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/16 04:53:30 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ char	*read_newline(int fd, char *my_backup)
 	{
 		buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 		if (!buff)
-			return (NULL);
+			return (free(my_backup),NULL);
 		nb = read(fd, buff, BUFFER_SIZE);
 		if (nb == -1)
-			return (free(buff), NULL);
+			return (free(my_backup),free(buff), NULL);
 		// if (nb == 0)
 		// 	return (free(buff), my_backup);
 		if (nb == 0)
@@ -86,7 +86,7 @@ char	*extract_after_newline(char *my_backup)
 		i++;
 	res = (char *)malloc((ft_strlen(my_backup) - i) * sizeof(char)); // AB\nABD\0
 	if (!res)
-		return (NULL);
+		return (free(my_backup), NULL);
 	i++;
 	while(my_backup[i])
 	{
@@ -106,6 +106,8 @@ char	*get_next_line(int fd)
 	static char	*my_backup = NULL;
 	char		*for_return;
 
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	my_backup = read_newline(fd, my_backup);
 	if (!my_backup)
 		return (NULL);
@@ -123,34 +125,46 @@ char	*get_next_line(int fd)
 #include <stdlib.h>
 
 
-int main()
-{
+// int main()
+// {
 
-	int fd;
-	fd= open("read_error.txt", O_RDONLY);
-	char *s;
-	s=get_next_line(fd);
-	printf("%s",s);
-	free(s);
+// 	int fd;
+// 	fd= open("read_error.txt", O_RDONLY);
+// 	char *s;
+// 	s=get_next_line(fd);
+// 	printf("%s",s);
+// 	free(s);
 
-	s=get_next_line(fd);
-	printf("%s",s);
-	free(s);
+// 	s=get_next_line(fd);
+// 	printf("%s",s);
+// 	free(s);
 
-	s=get_next_line(fd);
-	printf("%s",s);
-	free(s);
+// 	s=get_next_line(fd);
+// 	printf("%s",s);
+// 	free(s);
 
-	s=get_next_line(fd);
-	printf("%s",s);
-	free(s);
+// 	s=get_next_line(fd);
+// 	printf("%s",s);
+// 	free(s);
 
-	// s=get_next_line(fd);
-	// printf("%s",s);
-	// free(s);
+// 	s=get_next_line(fd);
+// 	printf("%s",s);
+// 	free(s);
 
-	// s=get_next_line(fd);
-	// printf("%s",s);
-	// free(s);
-	system("leaks a.out");
-}
+// 	s=get_next_line(fd);
+// 	printf("%s",s);
+// 	free(s);
+
+// 	s=get_next_line(fd);
+// 	printf("%s",s);
+// 	free(s);
+
+// 	// s=get_next_line(fd);
+// 	// printf("%s",s);
+// 	// free(s);
+
+// 	// s=get_next_line(fd);
+// 	// printf("%s",s);
+// 	// free(s);
+// 	system("leaks a.out");
+// }
