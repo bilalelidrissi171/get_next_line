@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 00:11:12 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/16 05:49:32 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/16 22:12:36 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	ls1 = ft_strlen(s1);
 	ls2 = ft_strlen(s2);
-
-	str = (char *)malloc((ls1 + ls2 + 1) * sizeof(char)); // change ft_strlen b ls1 and ls2
+	str = (char *)malloc((ls1 + ls2 + 1) * sizeof(char));
 	if (!str)
 		return (free(s1), NULL);
 	i = -1;
@@ -87,4 +86,3 @@ char	*ft_strdup(char *s1)
 	s[i] = '\0';
 	return (s);
 }
-

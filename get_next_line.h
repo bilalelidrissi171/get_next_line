@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:21:26 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/16 05:49:35 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/16 22:09:44 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10000
+#  define BUFFER_SIZE 42
 # endif
-
-
 
 char	*get_next_line(int fd);
 char	*read_newline(int fd, char *my_backup);
@@ -32,10 +30,5 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s1);
 size_t	ft_strlen(char *s);
 char	*extract_after_newline(char *my_backup);
-
-
-
-
-
 
 #endif
