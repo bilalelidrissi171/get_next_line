@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 00:10:55 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/16 05:12:22 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/16 05:48:05 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ char	*extract_newline(char **my_backup)
 	while ((*my_backup)[i++] != '\n');
 	len = (char *)malloc((i + 1) * sizeof(char));
 	if (!len)
+	{
 		return (NULL);
+	}
 
 	i = -1;
 

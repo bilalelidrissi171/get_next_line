@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:21:26 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/16 04:45:32 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/16 05:49:35 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	*extract_newline(char **my_backup);
 int		is_newline(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s1);
-char	*ft_strchr(char *s);
 size_t	ft_strlen(char *s);
 char	*extract_after_newline(char *my_backup);
 

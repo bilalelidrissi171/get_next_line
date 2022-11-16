@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 00:11:12 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/16 04:57:22 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/16 05:49:32 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,36 +22,6 @@ size_t	ft_strlen(char *s)
 	while (s[x])
 		x++;
 	return (x);
-}
-
-char	*ft_strchr(char *s)
-{
-	size_t	i;
-		size_t	j;
-
-	char *str;
-
-	i = 0;
-	j = 0;
-
-	while (s[i])
-	{
-		if (s[i] == '\n')
-		{
-			str = (char *)malloc((ft_strlen(s) - i) * sizeof(char)); //bilal\nhjkka\0
-			i++;
-			while (s[i])
-			{
-				str[j] = s[i];
-				j++;
-				i++;
-			}
-			str[j] = '\0';
-			return (str);
-		}
-		i++;
-	}
-	return (s);
 }
 
 int	is_newline(char *s)
