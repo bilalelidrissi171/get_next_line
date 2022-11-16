@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 00:10:55 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/16 04:53:30 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/16 05:07:16 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@ char	*extract_newline(char **my_backup)
 		if (**my_backup == '\0')
 			return (NULL);
 		len = *my_backup;
+		//free(my_backup);
 		*my_backup = NULL;
 		return (len);
 	}
 	while ((*my_backup)[i++] != '\n');
-	len = (char *)malloc((i + 2) * sizeof(char));
+	len = (char *)malloc((i + 1) * sizeof(char));
 	if (!len)
 		return (NULL);
 
@@ -84,7 +85,7 @@ char	*extract_after_newline(char *my_backup)
 		return (free(my_backup), NULL);
 	while (my_backup[i] != '\n' && my_backup[i])
 		i++;
-	res = (char *)malloc((ft_strlen(my_backup) - i) * sizeof(char)); // AB\nABD\0
+	res = (char *)malloc((ft_strlen(my_backup) - i) * sizeof(char));
 	if (!res)
 		return (free(my_backup), NULL);
 	i++;
