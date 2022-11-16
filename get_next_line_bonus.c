@@ -6,7 +6,7 @@
 /*   By: bel-idri <bel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 00:10:55 by bel-idri          #+#    #+#             */
-/*   Updated: 2022/11/16 23:07:47 by bel-idri         ###   ########.fr       */
+/*   Updated: 2022/11/16 23:15:05 by bel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,3 @@ char	*get_next_line(int fd)
 	my_backup[fd] = extract_after_newline(my_backup[fd]);
 	return (for_return);
 }
-
-
